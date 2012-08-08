@@ -3,7 +3,8 @@
 function FindProxyForURL(url, host) {
 	// learned the hard way: no calls to "alert" in Safari: alert is undefined 
 	// variable strings to return
-	var proxy_yes = "PROXY proxy.marin.k12.ca.us:80";
+	// var proxy_yes = "PROXY proxy.marin.k12.ca.us:80";
+	var proxy_yes = "PROXY proxy.marinschools.org:8080";
 	var proxy_no  = "DIRECT";
 	
 	// https passes thorugh
@@ -36,7 +37,13 @@ function FindProxyForURL(url, host) {
 		return proxy_no;
 	}
 
-	if (isInNet(host, "69.175.12.250", "255.255.255.255")) { 
+	if (dnsDomainIs(host, ".clearvisiontech.com") ||
+	   dnsDomainIs(host, ".clearvisiontech.net")) { 
+		// proxyLog("DIRECT: clearvision", host);
+		return proxy_no; 
+	}
+	if (isInNet(host, "66.175.58.9", "255.255.255.255") ||
+	   isInNet(host, "69.175.12.250", "255.255.255.255")) { 
 		// proxyLog("DIRECT: clearvision", host);
 		return proxy_no; 
 	}
