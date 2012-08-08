@@ -37,8 +37,23 @@ function FindProxyForURL(url, host) {
 		return proxy_no;
 	}
 
+	// YouTube
+	if (dnsDomainIs(host, ".youtube.com")) { 
+		// proxyLog("DIRECT: youtube", host);
+		return proxy_no; 
+	}
+	if (isInNet(host, "74.125.224.0", "255.255.255.0") ||
+		isInNet(host, "208.65.153.238", "255.255.255.255") ||
+		isInNet(host, "208.65.153.251", "255.255.255.255") ||
+		isInNet(host, "208.65.153.253", "255.255.255.255") ||
+		isInNet(host, "208.117.236.69", "255.255.255.255")) {
+		// proxyLog("DIRECT: youtube", host);
+		return proxy_no; 
+	}
+
+  // Report Card Maker - clearvisiontech.com/.net
 	if (dnsDomainIs(host, ".clearvisiontech.com") ||
-	   dnsDomainIs(host, ".clearvisiontech.net")) { 
+		dnsDomainIs(host, ".clearvisiontech.net")) { 
 		// proxyLog("DIRECT: clearvision", host);
 		return proxy_no; 
 	}
