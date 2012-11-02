@@ -3,8 +3,8 @@
 function FindProxyForURL(url, host) {
 	// learned the hard way: no calls to "alert" in Safari: alert is undefined 
 	// variable strings to return
-	var proxy_mcoe = "PROXY proxy.marin.k12.ca.us:80";
-	//var proxy_mcoe  = "PROXY proxy.marinschools.org:8080";
+	// var proxy_mcoe = "PROXY proxy.marin.k12.ca.us:80";
+	var proxy_mcoe  = "PROXY proxy.marinschools.org:8080";
 	var proxy_local = "PROXY 172.16.121.234:8180" 
 	var proxy_no    = "DIRECT";
 	
@@ -39,12 +39,9 @@ function FindProxyForURL(url, host) {
 	}
 
 	// YouTube
-	if (dnsDomainIs(host, ".youtube.com")) { 
-		// proxyLog("LOCAL PROXY: youtube", host);
-		return proxy_local; 
-	}
-	if (dnsDomainIs(host, ".ytimg.com")) { 
-		// proxyLog("DIRECT: ytimg", host);
+	if (dnsDomainIs(host, ".youtube.com") || 
+	   dnsDomainIs(host, ".ytimg.com")) { 
+		// proxyLog("DIRECT: youtube", host);
 		return proxy_no; 
 	}
 	if (isInNet(host, "74.125.224.0", "255.255.255.0") ||
@@ -52,10 +49,11 @@ function FindProxyForURL(url, host) {
 		isInNet(host, "208.65.153.251", "255.255.255.255") ||
 		isInNet(host, "208.65.153.253", "255.255.255.255") ||
 		isInNet(host, "208.117.236.69", "255.255.255.255")) {
-		// proxyLog("LOCAL PROXY: youtube", host);
-		return proxy_local; 
+		// proxyLog("DIRECT: youtube", host);
+		return proxy_no; 
 	}
 
+ 
   // Report Card Maker - clearvisiontech.com/.net
 	if (dnsDomainIs(host, ".clearvisiontech.com") ||
 		dnsDomainIs(host, ".clearvisiontech.net")) { 
