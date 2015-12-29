@@ -8,4 +8,3 @@ The proxy.pac file is served at
 
 http://wpad.kentfieldschools.org/wpad.dat (alias) or
 http://wpad.kentfieldschools.org/proxy.pac
-
